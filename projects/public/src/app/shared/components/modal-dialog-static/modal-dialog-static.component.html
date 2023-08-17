@@ -1,0 +1,26 @@
+<div class="modal-dialog">
+  <div class="modal-content p-4">
+    <div class="modal-body text-center">
+      <div class="centered-modal--icon mt-3">
+        <i *ngIf="status" class="fa-check-circle fas text-success"></i>
+        <i *ngIf="!status" class="fa-times-circle fas text-danger"></i>
+      </div>
+
+      <div class="centered-modal--data mt-4">
+        <h2 [ngClass]="{'text-success': status ,'text-danger': !status}"
+          class="centered-modal--data__h2  font-weight-bold mb-4">
+          <ng-container *ngIf="status">{{"shared.theRequestHasBeenSentSuccessfully"|translate}}</ng-container>
+          <ng-container *ngIf="!status">{{"shared.theRequestHasNotBeenSent"|translate}}</ng-container>
+        </h2>
+        <p class="centered-modal--data__p font-weight-bold">
+          <ng-container *ngIf="status"> {{"shared.yourRequestHasBeenSuccessfullySentAndIsAwaitingReview"|translate}}</ng-container>
+          <ng-container *ngIf="!status">{{"shared.anErrorHasOccurredDuringThePaymentProcess"|translate}} </ng-container>
+        </p>
+      </div>
+
+      <div class="centered-modal--submit mt-5">
+        <a [routerLink]="[ '/mc-orders']" class="btn btn-primary">{{"ordersRecord.viewOrders"|translate}}</a>
+      </div>
+    </div>
+  </div>
+</div>

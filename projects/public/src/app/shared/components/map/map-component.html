@@ -1,0 +1,6 @@
+
+<!--The div element for the map -->
+<div class = "mb-2" id="map" [style.height.px] = height></div>
+<button (click) = "restart()" *ngIf="edited" class="btn btn-outline-secondary">{{"map.reLocation"|translate}}</button>
+
+<!-- Async script executes immediately and must be after any DOM elements used in callback. -->

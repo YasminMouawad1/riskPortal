@@ -1,0 +1,25 @@
+<div class="requestCard-items">
+    <div *ngFor="let item of list">
+        <!-- <div class="requestCard-item is-main" *ngIf="item.type === 'main'">
+            <p class="requestCard-item-desc">{{item.value}}
+            </p>
+        </div> -->
+
+        <div class="requestCard-item" *ngIf="(item.type !== 'main') && item.type !== 'status'">
+            <p class="requestCard-item-title">{{ item.label! | translate}}</p>
+            <p class="requestCard-item-desc">{{item.value! |translate}}</p>
+        </div>
+
+        <div class="requestCard-item" *ngIf="item.type === 'status'">
+            <p class="requestCard-item-title">{{ item.label! | translate}}</p>
+            <!-- <li class="text-success">{{item.value}}</li> -->
+            <li *ngIf="item.value==='ACTIVE'" class="text-success">{{ 'inspection.viewCb.active' | translate}}</li>
+            <li *ngIf="item.value ==='INACTIVE'" class="text-warning">{{ 'inspection.viewCb.inactive' | translate}}</li>
+        </div>
+    </div>
+
+    <!-- <div class="requestCard-item justify-content-center align-items-end">
+      <p class="requestCard-item-title"></p>
+        <label class="desc2">...</label>
+    </div> -->
+</div>

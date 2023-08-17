@@ -1,0 +1,11 @@
+ <!-- <nav aria-label="breadcrumb">
+   <ol class="breadcrumb">
+     <li *ngIf="home" class="breadcrumb-item">
+       <a [routerLink]="home.url">{{  home.label | translate }}</a>
+     </li>
+     <li *ngFor="let breadLink of breadcrumpList; last as last" class="breadcrumb-item" [ngClass]="{'active': last}">
+       <a *ngIf="!last" [routerLink]="breadLink.url">{{   breadLink.label | translate  }}</a>
+       <ng-container *ngIf="last">{{   breadLink.label! | translate  }} </ng-container>
+     </li>
+   </ol>
+ </nav> -->

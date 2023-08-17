@@ -1,0 +1,75 @@
+<div class="card-body">
+    <h4 class="card-title mb-4">
+      {{ "USERITEMINFO.HEDING.FINANCIAL" | translate }}
+    </h4>
+    <div class="table-responsive">
+      <table class="table table-nowrap mb-0">
+        <tbody>
+          <tr>
+            <th scope="row">
+              {{ "USERITEMINFO.INCOME" | translate }}
+              :
+            </th>
+            <td>{{ userItem.income }}</td>
+          </tr>
+
+          <tr>
+            <th scope="row">
+              {{ "USERITEMINFO.ACTIVECREDITFACILITY" | translate }}
+              :
+            </th>
+            <td>{{ userItem.activeCreditFacility }}</td>
+          </tr>
+          <tr>
+            <th scope="row">
+              {{ "USERITEMINFO.ISCOREFILE" | translate }}
+              :
+            </th>
+
+
+            <td> 
+              <span *ngIf="!userItem.iscoreFile" class="mat-hint"> the system did not generate the i-score file yet</span>
+              <button *ngIf="userItem.iscoreFile" (click)="openPdf()" class="btn bg-transparent"> {{userItem.iscoreFile}}</button>
+            </td>
+          </tr>
+
+        
+          <tr>
+            <th scope="row">
+              {{ "USERITEMINFO.CREDITLIMIT" | translate }}
+              :
+            </th>
+            <td>{{ userItem.creditLimit }}
+              &nbsp;
+              <button [disabled]="isClientActivation" (click)="clientActivation(userItem.mobileNumber)" type="button"  class='btn btn-success' ><i class="{{isClientActivation ? 'bx bx-loader bx-spin  font-size-16 align-middle me-2' : 'fas fa-calculator font-size-16 align-middle me-2'}} " ></i>  {{ "USERITEMINFO.calcLimit" | translate }} </button>
+            </td>
+          </tr>
+          <tr *ngIf="isShowRiskLimit">
+            <th scope="row">
+              {{ "USERITEMINFO.riskLimit" | translate }}
+              :
+            </th>
+            <td  >
+              <!-- <span *ngIf="!isEditRiskLimit"> {{ riskApprovedLimit }}</span> -->
+              <input [readonly]="isEditRiskLimit?'':true" (keypress)="numberOnly($event)"   maxlength="6"  [(ngModel)]="riskApprovedLimit" value="{{ riskApprovedLimit }}" type="text" max="100000" class="mb-3 form-control" id="formrow-inputCity">   &nbsp;
+             <button (click)="editRiskLimit()" type="button"    [ngClass]="isEditRiskLimit ? 'btn btn-success' : 'btn btn-primary'"  ><i   [ngClass]="isEditRiskLimit ? 'bx bx-save font-size-16 align-middle me-2' : 'bx bx-edit font-size-16 align-middle me-2'"   ></i> {{isEditRiskLimit?'Save Risk Limt':'Edit Risk Limet'}} </button>
+              &nbsp;
+              <button *ngIf="isEditRiskLimit"  (click)="editRiskLimit(true)" type="button"  class='btn btn-danger' ><i   class='bx bx-x font-size-16 align-middle me-2'  ></i>  {{ "USERITEMINFO.cancel" | translate }} </button> 	</td>
+          </tr>
+          <tr>
+            <th scope="row">
+              {{ "USERITEMINFO.ASSUMEDINCOME" | translate }}
+              :
+            </th>
+            <td>{{ userItem.assumedIncome }}</td>
+          </tr>
+          <tr>
+            <th scope="row">
+              {{ "USERITEMINFO.systemLimit" | translate }}
+            </th>
+            <td>{{ userItem.instantLimit }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

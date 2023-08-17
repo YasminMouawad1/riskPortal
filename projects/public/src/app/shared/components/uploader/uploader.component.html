@@ -1,0 +1,60 @@
+<ngx-file-drop *ngIf="attachment&&!isViewOnly" (onFileDrop)="dropped($event)" [dropZoneClassName]="'uploader ' + type!"
+    [contentClassName]="getFileStatus()" accept={{acceptString}}>
+
+    <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+
+        <div class="uploader-message show-isArabic">
+            {{attachment.nameAr}}
+            <span *ngIf="isRequired&&!attachment.url" class="text-danger">* </span>
+        </div>
+        <div class="uploader-message show-isEnglish">
+            {{attachment.nameEn}}
+            <span *ngIf="isRequired&&!attachment.url" class="text-danger">* </span>
+        </div>
+
+        <div class="uploader-desc">({{accept.join(', ') | uppercase }})</div>
+
+        <div class="uploader-brows">
+            <label class="uploader-action" *ngIf="!attachment.url" (click)="openFileSelector()">
+                {{"classRequest.activitiesAndCertificates.exploreFiles" | translate}}
+            </label>
+            <label *ngIf="attachment.url" class="uploader-size">{{'attachments.uploadedSuccess'| translate}}</label>
+        </div>
+
+        <div *ngIf="attachment.url" class="uploader-actions mr-1">
+            <a class="fas fa-eye text-primary" *ngIf="!attachment.url?.includes('.pdf')" (click)="onViewFile()"></a>
+            <a class="fa fa-download text-primary" *ngIf="attachment.url?.includes('.pdf')" [href]="attachment.url"></a>
+            <a class="fas fa-times text-danger" (click)="onCancelFile()"></a>
+        </div>
+
+    </ng-template>
+</ngx-file-drop>
+
+<ngx-file-drop *ngIf="attachment&&isViewOnly" [disabled]="!isFlagged" (onFileDrop)="dropped($event)"
+    [dropZoneClassName]="'uploader ' + type!" [contentClassName]="getFileStatus()" accept={{acceptString}}>
+
+    <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+
+        <div class="uploader-message show-isArabic">
+            {{attachment.nameAr}}
+        </div>
+        <div class="uploader-message show-isEnglish">
+            {{attachment.nameEn}}
+        </div>
+
+        <div class="uploader-desc">({{accept.join(', ') | uppercase }})</div>
+
+        <div class="uploader-actions mr-1" [class.isDisabled]="!attachment.url">
+            <a class="fas fa-eye text-primary" *ngIf="!attachment.url?.includes('.pdf')" (click)="onViewFile()"></a>
+            <a class="fa fa-download text-primary" [href]="attachment.url" *ngIf="attachment.url?.includes('.pdf')"></a>
+            <a class="fas fa-info text-tertiary" *ngIf="isFlagged"
+                [ngClass]="{'text-danger font-weight-bold': isFlagged}" (click)="toggleShow()"></a>
+            <a class="fas fa-times text-danger" *ngIf="isFlagged" (click)="onCancelFile()"></a>
+        </div>
+
+        <div *ngIf="isShown&&isFlagged" class="uploader-info">
+            {{'attachments.fileProblem'| translate}} </div>
+
+
+    </ng-template>
+</ngx-file-drop>

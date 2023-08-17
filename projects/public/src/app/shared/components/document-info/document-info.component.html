@@ -1,0 +1,36 @@
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">{{ "USERITEMINFO.HEDING.DOCUMENTINFORMATION" | translate }}</h4>
+        <!-- <p class="card-title-desc">In this example lazy-loading of images is enabled for the next image
+            based on move direction. </p> -->
+        <div class="popup-gallery d-flex flex-wrap">
+            <div class="card1" *ngFor="let image of allContractImages; let i=index">
+                <div class="img-fluid contain-images">
+                        <img [src]="image.content" (click)="showImg(i)"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="allContractImages.length > 0" class="card">
+    <div class="imgBox">
+        <img [src]="imgSrc" alt=""  data-bs-toggle="modal" data-bs-target="#exampleModal">
+    </div>
+</div>
+
+ <!-- Modal for images -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+           <img [src]="imgSrc" alt="" class="w-100" id="imageRot">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{"USERITEMINFO.close"| translate}}</button>
+          <button type="button" class="btn btn-primary" (click)="rotateImg()">{{"USERITEMINFO.rotate"| translate}}</button>
+        </div>
+      </div>
+    </div>
+  </div>

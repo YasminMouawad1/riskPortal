@@ -1,0 +1,30 @@
+<div class="card" *ngIf="verify_list.length > 0">
+    <div class="card-body">
+      <label class="form-label">Verified by</label>
+      <div class="row">
+        <div class="col-md-3" *ngFor="let verBy of verify_list">
+          <img [src]="verBy" class="w-75 imgVerified"   >
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="card" *ngIf="reject_list.length > 0">
+    <div class="card-body">
+      <label class="form-label">Rejected by</label>
+      <div class="row">
+        <div class="col-md-3" *ngFor="let rejBy of reject_list">
+          <img [src]="rejBy" class="w-75 imgVerified"    title="click me">
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="card" *ngIf="bending_list.length > 0">
+    <div class="card-body">
+      <label class="form-label">Pending</label>
+      <div class="row">
+        <div class="col-md-3" *ngFor="let bend of bending_list">
+          <img [src]="bend" class="w-75 imgVerified"  (click)="changeVerifiedStatus(bend)" title="click me">
+      </div>
+      </div>
+    </div>
+  </div>

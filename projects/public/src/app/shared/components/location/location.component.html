@@ -1,0 +1,47 @@
+<div class="card-body">
+    <h4 class="card-title mb-4">
+      {{ "USERITEMINFO.HEDING.LOCATION" | translate }}
+    </h4>
+    <div class="table-responsive">
+      <table class="table table-nowrap mb-0">
+        <tbody>
+          <tr>
+            <th scope="row">
+              {{ "USERITEMINFO.GOVERNORATE" | translate }} :
+            </th>
+            <td>{{ userItem.governorate }}</td>
+          </tr>
+          <tr>
+            <th scope="row">
+              {{ "USERITEMINFO.AREA" | translate }}
+
+              :
+            </th>
+            <td>{{ userItem.area }}</td>
+          </tr>
+          <tr>
+            <th scope="row">
+              {{ "USERITEMINFO.CITY" | translate }}
+
+              :
+            </th>
+            <td>{{ userItem.city }}</td>
+          </tr>
+          <tr>
+            <th scope="row">
+              {{ "USERITEMINFO.HOMEADDRESS" | translate }}
+              :
+            </th>
+            <td>{{ userItem.homeAddress }}</td>
+          </tr>
+          <tr>
+            <th scope="row">
+              {{ "USERITEMINFO.UPDATEADDRESS" | translate }}
+              :
+            </th>
+            <td>{{ userItem.niHomeAddress }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+<form #paymentForm ngNoForm method="POST" hidden name="paymentForm"
+  [action]="formActionURL">
+  <input name="AccessToken" [value]="payment.accessToken" type="hidden" />
+  <input name="ApplicationReference" [value]="payment.applicationReference" type="hidden" />
+  <input name="BillReference" [value]="payment.billReference" type="hidden" />
+  <input name="RequestTimeStamp" [value]="payment.requestTimeStamp" type="hidden" />
+  <input name="ReturnUrl" [value]="payment.returnUrl"
+  type="hidden" />
+  <input name="Signature" [value]="payment.signature" type="hidden" />
+</form> 

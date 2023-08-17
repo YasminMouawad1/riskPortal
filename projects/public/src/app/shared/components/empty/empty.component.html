@@ -1,0 +1,13 @@
+<div class="empty text-center"  >
+    <div class="empty-img">
+        <img src="/assets/images/no data.svg" alt="" class="image">
+    </div>
+    <h3 *ngIf="title" class="empty-title">{{title}}</h3>
+    <h3 *ngIf="!title" class="empty-title">{{ 'general.noAvailableData' | translate}}</h3>
+    <p *ngIf="!desc" class="empty-desc">{{desc }}</p>
+    <!-- <button *ngIf="haveAction" class="empty-action btn btn-primary">{{'إعاد التحميل'}}</button> -->
+</div>
+
+
+
+

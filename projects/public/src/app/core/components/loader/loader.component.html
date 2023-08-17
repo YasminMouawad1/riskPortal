@@ -1,0 +1,11 @@
+<!-- loader.component.html -->
+<!-- <div *ngIf="loading" class="progress-loader" [ngStyle]="{'width': loading}"></div> -->
+<div [hidden]="!loading" class="Loading-bg text-primary">
+  <div class="loader">
+    <img src="/assets/images/logo-small.svg" alt="Loading..." /> 
+    <!-- <p>{{ text }}</p> -->
+  </div>
+  <!-- <p class="loader-status ">
+      {{loading}}
+    </p> -->
+</div>

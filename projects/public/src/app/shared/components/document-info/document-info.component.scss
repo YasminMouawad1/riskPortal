@@ -1,0 +1,26 @@
+.contain-images img{
+    width: 120px;
+    height: 120px;
+    margin-right: 7px;
+    margin-bottom: 7px;
+    cursor: pointer;
+}
+
+.imgBox{
+  text-align: center;
+}
+
+.imgBox img{
+    width: 65%;
+    height: 300px;
+    border-radius: 8px;
+    
+}
+
+.card1 img{
+    transition: all 0.3s ease-in-out 0s;
+}
+ 
+.card1 img:hover{
+    transform: scale(1.1); 
+}

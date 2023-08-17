@@ -1,0 +1,16 @@
+<div class="block block-shadow">
+
+    <h3 class="blockTitle">{{title|translate}}</h3>
+
+    <hr class="divider2">
+
+
+    <div class="row mx-5" >
+            <div *ngFor="let item of list" class="texts2 col-lg-4 col-sm-6 col-12">
+                <p class="texts2-title">{{item.label|translate}}</p>
+                <p class="texts2-value">{{item.value|translate}}</p>
+            </div>
+     
+    </div>
+
+</div>

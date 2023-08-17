@@ -1,0 +1,30 @@
+.team .card{
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.team .card:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+    box-shadow: 0 15px 20px rgb(0 0 0 / 10%); 
+}
+
+.modal-body{
+    padding: 0;
+}
+ 
+
+.modal-box{
+    position: relative;
+}
+
+.modal-box i{
+    position: absolute;
+    top: 50%;
+    left: 3%;
+    font-size: 22px;
+    color: #0a0b0b;
+}
+
+.modal-box .right{
+    right: 3%;
+}

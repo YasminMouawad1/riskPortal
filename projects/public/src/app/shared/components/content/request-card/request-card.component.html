@@ -1,0 +1,116 @@
+<div *ngIf="itemData" class="requestCard" (click)="onClickCard()">
+
+  <div class="requestCard-item is-main">
+    <p *ngIf="name" class="requestCard-item-desc">{{name}}
+    </p>
+  </div>
+
+  <div class="requestCard-items ">
+
+    <div *ngIf="itemData.crNumber" class="requestCard-item">
+      <p class="requestCard-item-title text-nowrap">{{ 'ordersRecord.crNumber' | translate}}</p>
+      <p class="requestCard-item-desc">{{itemData.crNumber}}</p>
+    </div>
+
+    <div class="requestCard-item">
+      <p class="requestCard-item-title text-nowrap">{{ 'ordersRecord.orderNumber' | translate}} </p>
+      <p *ngIf="itemData.requestNumber" class="requestCard-item-desc">{{itemData.requestNumber}}</p>
+    </div>
+
+    <div *ngIf="itemData.crCityAr || itemData.crCityEn" class="requestCard-item">
+      <p class="requestCard-item-title text-nowrap">{{ 'ordersRecord.city' | translate}}</p>
+      <p *ngIf="itemData.crCityAr" class="requestCard-item-desc show-isArabic"> {{itemData.crCityAr}}</p>
+      <p *ngIf="itemData.crCityEn" class="requestCard-item-desc show-isEnglish"> {{itemData.crCityEn}}</p>
+    </div>
+
+
+    <ng-container *appIsGranted="[ role.SUPER_ADMIN, role.SASSO_ADMIN, role.SASSO_USER , role.USER]">
+      <div class="requestCard-item">
+        <p class="requestCard-item-title text-nowrap">{{ 'ordersRecord.inceptionCenter' | translate}}</p>
+        <p class="requestCard-item-desc" *ngIf="itemData.forceDowngrade">-</p>
+        <p class="requestCard-item-desc show-isArabic" *ngIf="!itemData.forceDowngrade">{{itemData.cbNameAr || '-'}}</p>
+        <p class="requestCard-item-desc show-isEnglish" *ngIf="!itemData.forceDowngrade">{{itemData.cbNameEn || '-'}}</p>
+      </div>
+    </ng-container>
+
+    <ng-container *appIsGranted="[ role.SUPER_ADMIN, role.CB_ADMIN , role.CB_USER]">
+      <div class="requestCard-item">
+        <p class="requestCard-item-title text-nowrap">{{ 'ordersRecord.inceptionDate' | translate}}</p>
+        <p *ngIf="itemData.date" class="requestCard-item-desc text-nowrap"> {{itemData.date | date: 'yyyy-MM-dd'}}</p>
+      </div>
+    </ng-container>
+
+    <div class="requestCard-item">
+      <p class="requestCard-item-title text-nowrap">{{ 'ordersRecord.orderDate' | translate}}</p>
+      <p *ngIf="itemData.createdAt" class="requestCard-item-desc text-nowrap"> {{itemData.createdAt | date: 'yyyy-MM-dd'}}</p>
+    </div>
+    <div *ngIf="itemData.status" class="requestCard-item">
+      <p class="requestCard-item-title text-nowrap">{{"ordersRecord.orderStatus" |translate}}</p>
+      <p class="requestCard-item-desc text-nowrap">
+        <span [ngSwitch]="itemData.status">
+          <!-- the same view can be shown in more than one case PAIED_CERTIFICATE_DEPARTMENT-->
+          <ng-container *ngSwitchCase="requestStatus.processing">
+            <i class="fa fa-circle text-tertiary d-inline-block mr-1"></i>
+            {{"ordersRecord.saved" |translate}}
+          </ng-container>
+          <ng-container *ngSwitchCase="requestStatus.awaitingPayment">
+            <i class="fa fa-circle text-warning d-inline-block mr-1"></i>
+            {{"ordersRecord.awaitingPayment" |translate}}
+          </ng-container>
+          <ng-container *ngSwitchCase="requestStatus.approved">
+            <i class="fa fa-circle text-success d-inline-block mr-1"></i>
+            {{"ordersRecord.approved" |translate}}
+          </ng-container>
+          <ng-container *ngSwitchCase="requestStatus.rejected">
+            <i class="fa fa-circle text-danger d-inline-block mr-1"></i>
+           {{"ordersRecord.rejected" |translate}}
+          </ng-container>
+          <ng-container *ngSwitchCase="requestStatus.canceld">
+            <i class="fa fa-circle text-danger d-inline-block mr-1"></i>
+            {{"ordersRecord.canceld" |translate}}
+          </ng-container>
+          <ng-container *ngSwitchCase="requestStatus.paiedUser">
+            <i class="fa fa-circle text-primary d-inline-block mr-1"></i>
+            {{"ordersRecord.returned" |translate}}
+          </ng-container>
+          <ng-container *ngSwitchCase="requestStatus.completed">
+            <i class="fa fa-circle text-success d-inline-block mr-1"></i>
+            {{"ordersRecord.completed" |translate}}
+          </ng-container>
+          <!--default case when there are no matches -->
+          <ng-container *ngSwitchDefault>
+            <i class="fa fa-circle text-warning d-inline-block mr-1"></i>
+            {{"ordersRecord.processing" |translate}}
+          </ng-container>
+        </span>
+      </p>
+    </div>
+
+    <div class="requestCard-item">
+      <p class="requestCard-item-title text-nowrap">{{ 'ordersRecord.classType' | translate}}</p>
+      <div *ngIf="itemData.actualStars && itemData.actualStars>0" class="dsRating text-nowrap">
+        <ng-container *ngFor="let star of [1, 2, 3,4] , index as index">
+          <i class="fas fa-star mr-1" [ngClass]="{'is-active': index < itemData.actualStars}"></i>
+        </ng-container>
+      </div>
+      <!-- <div *ngIf="itemData.actualStars" class="dsRating text-nowrap">
+        <ng-container *ngFor="let star of [1, 2, 3,4], index as index">
+          <i class="fas fa-star mr-1" [ngClass]="{'is-active': 0 === index}"></i>
+        </ng-container>
+      </div>  -->
+      <div *ngIf="!itemData.actualStars" class="dsRating text-nowrap">
+        <ng-container *ngFor="let star of [1, 2, 3,4], index as index">
+          <i class="fas fa-star mr-1"></i>
+        </ng-container>
+      </div>
+    </div>
+
+
+  </div>
+  <label *ngIf="selectable" class="requestCard-control custom-control custom-checkbox" for="{{labelId}}"
+    (click)="$event.stopPropagation()">
+    <input type="checkbox" id="{{labelId}}" name="{{labelId}}" class="custom-control-input"
+      (change)="onChangeSelectCard($event)" [checked]="isSelected">
+    <span class="custom-control-label"></span>
+  </label>
+</div>
